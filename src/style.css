@@ -1,9 +1,59 @@
 * {
     margin: 0px;
     padding: 0px;
-    font-family: system-ui, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-   background-color: #B486AB; 
+html, body{
+    height: 100%;
+}
+
+.sidebar {
+    background-color: #FFE5CA;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    min-height: 100%;
+    gap: 40px;
+    padding: 20px;
+}
+
+.sidebar-lists > ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+}
+
+ul {
+    list-style-type: none;
+}
+
+.sidebar-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar-lists button {
+    font-size: 1.2rem;
+    border: none;
+    background-color: transparent;
+}
+
+.sidebar-lists button {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.sidebar-lists button > img {
+    width: 35px;
+}
+
+.sidebar-title{
+    font-size: 1.3rem;
+}
+.sidebar-title > img {
+    width: 40px;
 }
