@@ -4,6 +4,11 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+button {
+    border: none;
+    background-color: transparent;
+}
+
 html, body{
     height: 100%;
 }
@@ -36,8 +41,6 @@ ul {
 
 .sidebar-lists button {
     font-size: 1.2rem;
-    border: none;
-    background-color: transparent;
 }
 
 .sidebar-lists button {
@@ -45,6 +48,19 @@ ul {
     width: 100%;
     gap: 10px;
     align-items: center;
+}
+
+.sidebar button:hover {
+    box-shadow: inset 0em 0em 0em 10em rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+}
+
+.sidebar-title button {
+    width: 50px;
+}
+
+.sidebar-title img {
+    height: 100%;
 }
 
 .sidebar-lists button > img {
