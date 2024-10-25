@@ -6,7 +6,8 @@
     <title>Do It!</title>
 </head>
 <body>
-    <div class="sidebar">
+    <div class="container">
+            <div class="sidebar">
         <div class="sidebar-title">
             <h1>Do-It</h1>
             <button>
@@ -40,10 +41,48 @@
         <div class="sidebar-projects">
             <h2>Projects
                 <button>
-                    <img src="assests/add_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                    <svg class="add" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                 </button>
             </h2>
         </div>
     </div>
+
+    <div class="main">
+        <h1>Inbox</h1>
+        <hr>
+        <button>
+            <svg class="add" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Add task
+        </button>
+        <div class="addTaskForm">
+            <form action="" method="post">
+                <div>
+                    <input type="text" id="title" name="title" placeholder="Task">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="current color"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                    </button>
+                </div>
+                <div>
+                    <input type="text" id="description" name="description" placeholder="Description">
+                </div>
+                <div>
+                    <label for="dueDate">Due date</label>
+                    <input type="date" id="dueDate" name="duedate">
+                </div>
+                <div>
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority">
+                        <option value="none">none</option>
+                        <option value="low">low</option>
+                        <option value="medium">medium</option>
+                        <option value="high">high</option>
+                    </select>
+                </div>
+                <button>Save</button>
+            </form>
+        </div>
+    </div>
+    </div>
+
 </body>
 </html>
