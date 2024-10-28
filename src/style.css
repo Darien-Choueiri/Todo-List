@@ -31,6 +31,7 @@ body{
     background-color: var(--background);
     color: var(--text);
 }
+/* Sidebar */
 
 .sidebar {
     background-color: rgba(0, 0, 0, 0.03);
@@ -40,8 +41,9 @@ body{
     height: 100vh;
     box-sizing: border-box;
     gap: 40px;
-    padding: 20px;
+    padding: 40px;
     border-style: 0px 0px 1px 0px;
+    overflow: hidden;
 }
 
 .sidebar-lists > ul{
@@ -128,6 +130,7 @@ ul {
     fill: var(--background);
 }
 
+/* Page title*/
 .main {
     display: flex;
     flex-direction: column;
@@ -139,6 +142,16 @@ ul {
 .main > h1 {
     margin-bottom: 30px;
 }
+
+.main  > hr {
+    height: 3px;
+    width: 100%;
+    border-width: 0;
+    background-color: var(--secondary);
+    margin-bottom: 5px;
+}
+
+/* Add task button */
 .main > button {
     display: flex;
     align-items: end;
@@ -148,13 +161,7 @@ ul {
     fill: var(--primary);
 }
 
-.main  > hr {
-    height: 3px;
-    width: 100%;
-    border-width: 0;
-    background-color: var(--secondary);
-    margin-bottom: 5px;
-}
+/* Add task dialog box*/
 
 input,
 select {
@@ -200,9 +207,11 @@ form {
     flex-direction: column;
     gap: 10px;
 }
+
 form > div:first-child {
     display: flex;
 }
+
 form > div:first-child > button:hover{
     fill: var(--accent);
 }

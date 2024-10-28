@@ -7,35 +7,32 @@
 </head>
 <body>
     <div class="container">
-            <div class="sidebar">
-        <div class="sidebar-title">
-            <h1>Do-It</h1>
-            <button>
-                <img src="assests/arrow_back_ios_new_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="back arrow">
-            </button>
-        </div>
+        <div class="sidebar">
+            <div class="sidebar-title">
+                <h1>Do-It</h1>
+            </div>
 
-        <div class="sidebar-lists">
-            <ul>
-                <li>
-                    <button>
-                        <img src="assests/inbox_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                        Inbox
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <img src="assests/today_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                        Today
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <img src="assests/date_range_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                        Week
-                    </button>
-                </li>
-            </ul>
+            <div class="sidebar-lists">
+                <ul>
+                    <li>
+                        <button id="inboxBtn">
+                            <img src="assests/inbox_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                            Inbox
+                        </button>
+                    </li>
+                    <li>
+                        <button id="todayBtn">
+                            <img src="assests/today_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                            Today
+                        </button>
+                    </li>
+                    <li>
+                        <button id="weekBtn">
+                            <img src="assests/date_range_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                            Week
+                        </button>
+                    </li>
+                </ul>
         </div>
 
         <div class="sidebar-projects">
@@ -48,7 +45,7 @@
     </div>
 
     <div class="main">
-        <h1>Inbox</h1>
+        <h1 class="main-title"></h1>
         <hr>
         <button class="addTask-button">
             <svg class="add" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
