@@ -2,6 +2,7 @@ import './style.css';
 import inbox from "./inbox.js"
 import today from "./today.js"
 import week from "./week.js"
+import { Task, addTask } from "./addTask.js" 
 
 inbox();
 
@@ -36,22 +37,8 @@ closeButton.addEventListener("click", () => {
 });
 
 //add task
-const myTasks = [];
-
-class Task {
-    constructor(title, description, dueDate, priority){
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-    }
-}
-
-function addTask(task) {
-    myTasks.push(task);
-}
-
 const submit = document.querySelector('form');
+
 submit.addEventListener('submit', (event) => {
     const title = document.querySelector('#title').value;
     const description = document.querySelector('#description').value;
@@ -60,6 +47,6 @@ submit.addEventListener('submit', (event) => {
     const task = new Task(title, description, dueDate, priority);
     addTask(task);
     event.preventDefault();
-    dialog.close();
-    console.log(myTasks);
+    dialog.close();  
 });
+
