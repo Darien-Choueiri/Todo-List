@@ -35,12 +35,31 @@ closeButton.addEventListener("click", () => {
     dialog.close();
 });
 
-//open and closing sidebar 
-const sidebarButton = document.querySelector(".sidebar-title > button");
-const sidebar = document.querySelector(".sidebar");
+//add task
+const myTasks = [];
 
+class Task {
+    constructor(title, description, dueDate, priority){
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
+}
 
-sidebarButton.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed");
-    sidebarButton.classList.toggle("collapsed");
+function addTask(task) {
+    myTasks.push(task);
+}
+
+const submit = document.querySelector('form');
+submit.addEventListener('submit', (event) => {
+    const title = document.querySelector('#title').value;
+    const description = document.querySelector('#description').value;
+    const dueDate = document.querySelector('#dueDate').value;
+    const priority = document.querySelector('#priority').value;
+    const task = new Task(title, description, dueDate, priority);
+    addTask(task);
+    event.preventDefault();
+    dialog.close();
+    console.log(myTasks);
 });
