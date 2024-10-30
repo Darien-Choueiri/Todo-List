@@ -1,8 +1,8 @@
 import './style.css';
-import inbox from "./inbox.js"
+import { inbox, displayInbox } from "./inbox.js"
 import today from "./today.js"
 import week from "./week.js"
-import { Task, addTask } from "./addTask.js" 
+import { Task, addTask, myTasks } from "./addTask.js" 
 
 inbox();
 
@@ -48,5 +48,6 @@ submit.addEventListener('submit', (event) => {
     addTask(task);
     event.preventDefault();
     dialog.close();  
+    displayInbox(myTasks);
 });
 

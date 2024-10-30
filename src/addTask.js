@@ -15,6 +15,6 @@ function addTask(task) {
     console.log(myTasks);
 }
 
-export { Task, addTask }
+export { Task, addTask, myTasks };
 
 
