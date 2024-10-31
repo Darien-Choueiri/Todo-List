@@ -16,7 +16,7 @@ function displayInbox(tasks) {
         const description = document.createElement('p');
         const dueDate = document.createElement('div');
         const priority = document.createElement('div');
-
+        
         title.innerHTML = task.title;
         description.innerHTML = task.description;
         dueDate.innerHTML = task.dueDate;
@@ -24,16 +24,13 @@ function displayInbox(tasks) {
 
         checkbox.type = 'checkbox';
         checkbox.name = 'checkbox';
-        checkbox.id = `${title}`
+        checkbox.id = `${task.title + task.description + task.dueDate + task.priority}`
         section.classList.add('task');
 
         
         section.appendChild(checkbox);
         section.appendChild(title);
-        section.appendChild(description);
         section.appendChild(dueDate);
-        section.appendChild(priority);
-
         display.appendChild(section);
     });
 }

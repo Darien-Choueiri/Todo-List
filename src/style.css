@@ -259,7 +259,7 @@ form > button:hover {
 }
 .task {
     display: grid;
-    grid-template-columns: 5% 80% repeat(3, 5%);
+    grid-template-columns: 3% 82% repeat(3, 5%);
     align-items: center;
     background-color: rgba(0, 0, 0, 0.03);
 }
@@ -268,12 +268,12 @@ input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
   background-color: var(--background);
-  margin: 0;
+  margin: 0 0 0 10px;
   font: inherit;
   color: currentColor;
   width: 1.35rem;
   height: 1.35rem;
-  border: 0.15rem solid var(--secondary);
+  border: 0.15rem solid var(--text);
   border-radius: 0.15rem;
   transform: translateY(-0.075rem);
   display: grid;
@@ -287,7 +287,7 @@ input[type="checkbox"]::before {
     height: 0.85rem;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 1rem 1rem var(--secondary);
+    box-shadow: inset 1rem 1rem var(--text);
     transform-origin: bottom left;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
