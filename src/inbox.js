@@ -1,15 +1,16 @@
 import { myTasks } from "./addTask.js"
 
-function inbox() {
+function inboxPage() {
     const title = document.querySelector(".main-title");
     title.textContent = "Inbox";
 };
 
 const display = document.querySelector('#tasks');
 
-function displayInbox() {
+function displayInbox(tasks) {
     display.innerHTML = '';
-    myTasks.forEach(function (task){
+    tasks.forEach(function (task){
+        const checkbox = document.createElement('input');
         const section = document.createElement('div');
         const title = document.createElement('h3');
         const description = document.createElement('p');
@@ -21,8 +22,13 @@ function displayInbox() {
         dueDate.innerHTML = task.dueDate;
         priority.innerHTML = task.priority;
 
+        checkbox.type = 'checkbox';
+        checkbox.name = 'checkbox';
+        checkbox.id = `${title}`
         section.classList.add('task');
 
+        
+        section.appendChild(checkbox);
         section.appendChild(title);
         section.appendChild(description);
         section.appendChild(dueDate);
@@ -32,4 +38,4 @@ function displayInbox() {
     });
 }
 
-export { inbox, displayInbox };
+export { inboxPage, displayInbox };
