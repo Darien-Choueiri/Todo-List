@@ -2,7 +2,7 @@ import './style.css';
 import { inboxPage, displayInbox } from "./inbox.js"
 import { todayPage, displayToday } from "./today.js"
 import { weekPage, displayWeek } from "./week.js"
-import { Task, addTask, myTasks } from "./addTask.js" 
+import { Task, addTask, myTasks, removeTask, editTask } from "./addTask.js" 
 import { format, eachWeekOfInterval, add, isBefore, nextSunday } from "date-fns"
 inboxPage();
 
@@ -44,26 +44,28 @@ closeButton.addEventListener("click", () => {
 });
 
 //add task
-const submit = document.querySelector('form');
+const submit = document.querySelector('#dialog>form');
 
 submit.addEventListener('submit', (event) => {
+
     const title = document.querySelector('#title').value;
     const description = document.querySelector('#description').value;
     const dueDate = format(document.querySelector('#dueDate').value.replace(/-/g, '/'), 'MMM dd');
     const priority = document.querySelector('#priority').value;
-    const task = new Task(title, description, dueDate, priority);
+    const task = new Task(title, description, dueDate, priority, title+description+dueDate+priority);
+
     addTask(task);
     event.preventDefault();
     dialog.close();  
     displayTask(page);  
 });
 
+//display task
 const date = new Date();
 const today = format(date, 'MMM dd');
 
 const endWeek = format(nextSunday(date), 'MMM dd');
-console.log(isBefore(today, endWeek));
-console.log(endWeek);
+
 function displayTask(page){
     switch(page){
         case 1:
@@ -76,3 +78,49 @@ function displayTask(page){
             displayInbox(myTasks.filter((task) => isBefore(task.dueDate, endWeek)));
     }
 }
+
+//remove task
+document.addEventListener("click", (e) => {
+    const target = e.target.closest(".removeTask");
+    
+    if(target){
+        console.log(target.id);
+        removeTask(target.id);
+        target.parentNode.remove();
+        console.log(myTasks);
+    }
+
+});
+
+//edit task
+const dialogEdit = document.querySelector("#dialogEdit");
+
+document.addEventListener("click", (e) => {
+    const target = e.target.closest(".editTask");
+    
+    if(target){
+        dialogEdit.showModal();
+        dialogEdit.value = target.id;
+    }
+});
+
+const submitEdit = document.querySelector('#dialogEdit>form');
+
+submitEdit.addEventListener('submit', (event) => {
+    console.log('submit Edit was clicked');
+    console.log(dialogEdit.value);
+
+    const title = document.querySelector('#dialogEdit #title').value;
+    const description = document.querySelector('#dialogEdit #description').value;
+    const dueDate = format(document.querySelector('#dialogEdit #dueDate').value.replace(/-/g, '/'), 'MMM dd');
+    const priority = document.querySelector('#dialogEdit #priority').value;
+    const task = new Task(title, description, dueDate, priority, title+description+dueDate+priority);
+
+    
+    editTask(task, dialogEdit.value);
+
+    console.log(myTasks);
+    event.preventDefault();
+    dialogEdit.close();  
+    displayTask(page);  
+});

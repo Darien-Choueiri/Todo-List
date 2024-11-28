@@ -4,6 +4,7 @@
     --primary: #30d2ae;
     --secondary: #8688e4;
     --accent: #9365dd;  
+    --warning: #cf2d51;
 }
 
 
@@ -258,17 +259,22 @@ form > button:hover {
     width: 100%;
 }
 .task {
-    display: grid;
-    grid-template-columns: 3% 82% repeat(3, 5%);
+    display: flex;
+    gap: 10px;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.03);
+    padding: 5px;
+}
+
+.task > h3 {
+    margin-right: auto;
 }
 
 input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
   background-color: var(--background);
-  margin: 0 0 0 10px;
+  margin: 0;
   font: inherit;
   color: currentColor;
   width: 1.35rem;
@@ -296,8 +302,21 @@ input[type="checkbox"]:checked::before {
     transform: scale(1);
   }
 
+.editTask,
+.removeTask {
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+    background-color: rgba(0, 0, 0, 0.06);
+    color: var(--text);
+}
 
-  
+.editTask:hover {
+    background-color: var(--primary);
+}
+
+.removeTask:hover {
+    background-color: var(--warning); 
+}
         
 
   

@@ -81,6 +81,33 @@
                     <button class="submit-addTask" type="submit">Save</button>
                 </form>
         </dialog>
+        <dialog id="dialogEdit">
+            <form>
+                <div>
+                    <input type="text" id="title" name="title" placeholder="Task">
+                    <button class="exitAddTask" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="current color"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                    </button>
+                </div>
+                <div>
+                    <input type="text" id="description" name="description" placeholder="Description">
+                </div>
+                <div>
+                    <label for="dueDate">Due date</label>
+                    <input type="date" id="dueDate" name="duedate">
+                </div>
+                <div>
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority">
+                        <option value="none">none</option>
+                        <option value="low">low</option>
+                        <option value="medium">medium</option>
+                        <option value="high">high</option>
+                    </select>
+                </div>
+                <button class="submit-editTask" type="submit">Save Edit</button>
+            </form>
+    </dialog>
     </div>
     </div>
 </body>
