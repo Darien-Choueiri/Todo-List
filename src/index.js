@@ -6,6 +6,9 @@ import { Task, addTask, myTasks, removeTask, editTask } from "./addTask.js"
 import { format, eachWeekOfInterval, add, isBefore, nextSunday } from "date-fns"
 inboxPage();
 
+//things to do: combine the getting of values from a form into a function to 
+//avoid replication
+
 //switch between the pages
 let page = 1;
 const inboxBtn = document.querySelector("#inboxBtn");
@@ -30,7 +33,7 @@ weekBtn.addEventListener("click", () => {
     displayTask(page);
 }); 
 
-//open and closing popup window for add task form
+//open and closing popup window for add task form and edit task form
 const dialog = document.querySelector("dialog");
 
 const showButton = document.querySelector(".addTask-button");
@@ -107,6 +110,13 @@ document.addEventListener("click", (e) => {
     if(target){
         dialogEdit.showModal();
         dialogEdit.value = target.id;
+
+        let task = myTasks.find(t => t.key === target.id);
+
+        document.querySelector('#dialogEdit #title').value = task.title;
+        document.querySelector('#dialogEdit #description').value = task.description;
+        document.querySelector('#dialogEdit #dueDate').value = task.dueDate;
+        document.querySelector('#dialogEdit #priority').value = task.priority;
     }
 });
 
