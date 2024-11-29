@@ -32,8 +32,10 @@ weekBtn.addEventListener("click", () => {
 
 //open and closing popup window for add task form
 const dialog = document.querySelector("dialog");
+
 const showButton = document.querySelector(".addTask-button");
 const closeButton = document.querySelector(".exitAddTask");
+const closeButtonEdit = document.querySelector('.exitEditTask');
 
 showButton.addEventListener("click", () => {
     dialog.showModal();
@@ -41,6 +43,10 @@ showButton.addEventListener("click", () => {
 
 closeButton.addEventListener("click", () => {
     dialog.close();
+});
+
+closeButtonEdit.addEventListener("click", () => {
+    dialogEdit.close();
 });
 
 //add task
