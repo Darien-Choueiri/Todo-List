@@ -143,3 +143,13 @@ submitEdit.addEventListener('submit', (event) => {
     dialogEdit.close();  
     displayTask(page);  
 });
+
+//check task 
+document.addEventListener("click", (e) => {
+    const target = e.target.closest(".checkTask");
+    
+    if(target){
+        target.nextElementSibling.classList.toggle('crossOut');
+    }
+
+});

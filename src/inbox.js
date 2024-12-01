@@ -29,6 +29,7 @@ function displayInbox(tasks) {
 
         title.classList.add(`${task.priority}`);
         
+        checkbox.classList.add('checkTask');
         edit.classList.add('editTask');
         remove.classList.add('removeTask');
         checkbox.type = 'checkbox';
