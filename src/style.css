@@ -5,6 +5,9 @@
     --secondary: #8688e4;
     --accent: #9365dd;  
     --warning: #cf2d51;
+    --low: #fdc500;
+    --medium: #fd8c00;
+    --high: #dc0000;
 }
 
 
@@ -230,16 +233,16 @@ form > input {
     background-color: transparent;
 }
 
-option[value='low']{
-    color: yellow;
+option[value='low'], .low{
+    color: var(--low);
 }
 
-option[value='medium']{
-    color: orange;
+option[value='medium'], .medium{
+    color: var(--medium);
 }
 
-option[value='high']{
-    color: red;
+option[value='high'], .high{
+    color: var(--high);
 }
 
 form > button {
@@ -317,6 +320,3 @@ input[type="checkbox"]:checked::before {
 .removeTask:hover {
     background-color: var(--warning); 
 }
-        
-
-  
