@@ -3,7 +3,7 @@ import { inboxPage, displayInbox } from "./inbox.js"
 import { todayPage, displayToday } from "./today.js"
 import { weekPage, displayWeek } from "./week.js"
 import { Task, addTask, myTasks, removeTask, editTask } from "./addTask.js" 
-import { format, eachWeekOfInterval, add, isBefore, nextSunday } from "date-fns"
+import { format, eachWeekOfInterval, add, isBefore, isAfter, nextSunday, nextMonday } from "date-fns"
 inboxPage();
 
 //things to do: combine the getting of values from a form into a function to 
@@ -71,10 +71,13 @@ submit.addEventListener('submit', (event) => {
 
 //display task
 const date = new Date();
+const lastWeek = format(date.getTime() - 1000*60*60*24*7, 'MMM dd');
 const today = format(date, 'MMM dd');
 
 const endWeek = format(nextSunday(date), 'MMM dd');
 
+console.log(`the monday: ${lastWeek}`);
+console.log(date);
 function displayTask(page){
     switch(page){
         case 1:
@@ -84,7 +87,7 @@ function displayTask(page){
             displayInbox(myTasks.filter((task) => task.dueDate == today));
             break;
         case 3: 
-            displayInbox(myTasks.filter((task) => isBefore(task.dueDate, endWeek)));
+            displayInbox(myTasks.filter((task) => isBefore(task.dueDate, endWeek) && isAfter(task.dueDate, lastWeek)));
     }
 }
 

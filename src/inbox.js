@@ -27,6 +27,7 @@ function displayInbox(tasks) {
         dueDate.innerHTML = task.dueDate;
         priority.innerHTML = task.priority;
 
+        title.classList.add(`${task.priority}`);
         
         edit.classList.add('editTask');
         remove.classList.add('removeTask');
