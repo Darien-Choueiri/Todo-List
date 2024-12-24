@@ -331,3 +331,21 @@ input[type="checkbox"]:checked::before {
     font-style: italic;
     color: rgba(0, 0, 0, 0.3);
 }
+
+#dialogProject input {
+    width: 250px;
+}
+
+#dialogProject div {
+    display: flex;
+    gap: 10px;
+}
+
+#dialogProject button {
+    font-size: 1.1rem;
+}
+
+#dialogProject button:hover {
+    color: var(--primary);
+}
+

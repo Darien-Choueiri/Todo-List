@@ -1,13 +1,18 @@
 import './style.css';
 import { inboxPage, displayInbox } from "./inbox.js"
-import { todayPage, displayToday } from "./today.js"
-import { weekPage, displayWeek } from "./week.js"
+import { todayPage } from "./today.js"
+import { weekPage} from "./week.js"
 import { Task, addTask, myTasks, removeTask, editTask } from "./addTask.js" 
-import { format, eachWeekOfInterval, add, isBefore, isAfter, nextSunday, nextMonday } from "date-fns"
+import { format, isBefore, isAfter, nextSunday } from "date-fns"
+import { Project, myProjects, projectAddTask, createProject, displayProjects } from "./projects.js"
+import { constructFromSymbol } from 'date-fns/constants';
 inboxPage();
 
 //things to do: combine the getting of values from a form into a function to 
 //avoid replication
+
+//
+displayProjects();
 
 //switch between the pages
 let page = 1;
@@ -39,6 +44,7 @@ const dialog = document.querySelector("dialog");
 const showButton = document.querySelector(".addTask-button");
 const closeButton = document.querySelector(".exitAddTask");
 const closeButtonEdit = document.querySelector('.exitEditTask');
+const closeAddProject = document.querySelector('.exitAddProject');
 
 showButton.addEventListener("click", () => {
     dialog.showModal();
@@ -52,6 +58,9 @@ closeButtonEdit.addEventListener("click", () => {
     dialogEdit.close();
 });
 
+closeAddProject.addEventListener("click", () => {
+    dialogProject.close();
+})
 //add task
 const submit = document.querySelector('#dialog>form');
 
@@ -110,6 +119,7 @@ const dialogEdit = document.querySelector("#dialogEdit");
 document.addEventListener("click", (e) => {
     const target = e.target.closest(".editTask");
     
+    //setting up values of the task onto the form
     if(target){
         dialogEdit.showModal();
         dialogEdit.value = target.id;
@@ -123,6 +133,7 @@ document.addEventListener("click", (e) => {
     }
 });
 
+//editing task values
 const submitEdit = document.querySelector('#dialogEdit>form');
 
 submitEdit.addEventListener('submit', (event) => {
@@ -144,7 +155,7 @@ submitEdit.addEventListener('submit', (event) => {
     displayTask(page);  
 });
 
-//check task 
+//check task viusal identifier only
 document.addEventListener("click", (e) => {
     const target = e.target.closest(".checkTask");
     
@@ -152,4 +163,25 @@ document.addEventListener("click", (e) => {
         target.nextElementSibling.classList.toggle('crossOut');
     }
 
+});
+
+//create a project
+const addProject = document.querySelector(".sidebar-projects button");
+const dialogProject = document.querySelector("#dialogProject");
+
+addProject.addEventListener("click", () => {
+    dialogProject.showModal();
+});
+
+const submitProject = document.querySelector('#dialogProject>form');
+
+submitProject.addEventListener("click", (event) => {
+     console.log('create project clicked');
+    const projectName = document.querySelector('#project').value;
+    console.log('project name obtained');
+    console.log(projectName);
+    createProject(projectName);
+    event.preventDefault();
+    dialogProject.close(); 
+    displayProjects();
 });
