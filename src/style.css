@@ -349,3 +349,7 @@ input[type="checkbox"]:checked::before {
     color: var(--primary);
 }
 
+.sidebar-projects > ul {
+    margin-left: 15px;
+}
+

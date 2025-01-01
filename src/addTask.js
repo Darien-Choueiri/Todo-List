@@ -1,3 +1,5 @@
+import { removeTaskFromProject } from "./projects.js" 
+
 //add task
 let myTasks = [];
 
@@ -18,6 +20,7 @@ function addTask(task) {
 
 function removeTask(task){
     let pos = myTasks.findIndex(t => t.key === task);
+    
     myTasks.splice(pos, 1);
 }
 

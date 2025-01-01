@@ -4,8 +4,11 @@ import { todayPage } from "./today.js"
 import { weekPage} from "./week.js"
 import { Task, addTask, myTasks, removeTask, editTask } from "./addTask.js" 
 import { format, isBefore, isAfter, nextSunday } from "date-fns"
-import { Project, myProjects, projectAddTask, createProject, displayProjects } from "./projects.js"
+import { Project, myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject} from "./projects.js"
 import { constructFromSymbol } from 'date-fns/constants';
+
+let category = 'default';
+
 inboxPage();
 
 //things to do: combine the getting of values from a form into a function to 
@@ -73,6 +76,7 @@ submit.addEventListener('submit', (event) => {
     const task = new Task(title, description, dueDate, priority, title+description+dueDate+priority);
 
     addTask(task);
+    projectAddTask(category, task);
     event.preventDefault();
     dialog.close();  
     displayTask(page);  
@@ -106,6 +110,7 @@ document.addEventListener("click", (e) => {
     
     if(target){
         console.log(target.id);
+        removeTaskFromProject(category, target.id);
         removeTask(target.id);
         target.parentNode.remove();
         console.log(myTasks);
@@ -184,4 +189,21 @@ submitProject.addEventListener("click", (event) => {
     event.preventDefault();
     dialogProject.close(); 
     displayProjects();
+});
+
+
+//switch pages for each project
+document.addEventListener("click", (e) => {
+    const target = e.target.closest(".projectSelect");
+    
+    if(target){
+        console.log(`button wrok ${target.innerHTML}`);
+        
+        const project = target.innerHTML;
+        category = project;
+
+        document.querySelector(".main-title").innerHTML = project.charAt(0).toUpperCase() + project.slice(1);
+        const s = myProjects.find(o => o.title === project);
+        displayProjectItems(s);
+    }
 });
