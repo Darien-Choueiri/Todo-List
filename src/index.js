@@ -4,17 +4,15 @@ import { todayPage } from "./today.js"
 import { weekPage} from "./week.js"
 import { Task, addTask, myTasks, removeTask, editTask } from "./addTask.js" 
 import { format, isBefore, isAfter, nextSunday } from "date-fns"
-import { Project, myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject} from "./projects.js"
-import { constructFromSymbol } from 'date-fns/constants';
+import { myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject} from "./projects.js"
+
 
 let category = 'default';
 
 inboxPage();
 
-//things to do: combine the getting of values from a form into a function to 
-//avoid replication
+//optimization to do: combine the getting of values from a form into a function to avoid replication
 
-//
 displayProjects();
 
 //switch between the pages
@@ -26,18 +24,21 @@ const weekBtn = document.querySelector("#weekBtn");
 inboxBtn.addEventListener("click", () => {
     inboxPage();
     page  = 1;
+    category = 'default';
     displayTask(page);
 }); 
 
 todayBtn.addEventListener("click", () => {
     todayPage();
     page = 2;
+    category = 'default';
     displayTask(page);
 }); 
 
 weekBtn.addEventListener("click", () => {
     weekPage();
     page = 3;
+    category = 'default';
     displayTask(page);
 }); 
 
@@ -73,13 +74,22 @@ submit.addEventListener('submit', (event) => {
     const description = document.querySelector('#description').value;
     const dueDate = format(document.querySelector('#dueDate').value.replace(/-/g, '/'), 'MMM dd');
     const priority = document.querySelector('#priority').value;
-    const task = new Task(title, description, dueDate, priority, title+description+dueDate+priority);
-
-    addTask(task);
-    projectAddTask(category, task);
+    const key = title+description+dueDate+priority;
+    if (myTasks.find(o => o.key === key)) {
+        alert("Task is not unique.");
+    } else {
+        const task = new Task(title, description, dueDate, priority, key);
+        addTask(task);
+        projectAddTask(category, task);
+    }
     event.preventDefault();
     dialog.close();  
-    displayTask(page);  
+    if (category === 'default'){
+        displayTask(page);  
+    } else {
+        displayProjectItems(category);
+    }
+
 });
 
 //display task
@@ -111,6 +121,9 @@ document.addEventListener("click", (e) => {
     if(target){
         console.log(target.id);
         removeTaskFromProject(category, target.id);
+        
+        displayProjectItems(category);
+
         removeTask(target.id);
         target.parentNode.remove();
         console.log(myTasks);
@@ -203,7 +216,8 @@ document.addEventListener("click", (e) => {
         category = project;
 
         document.querySelector(".main-title").innerHTML = project.charAt(0).toUpperCase() + project.slice(1);
-        const s = myProjects.find(o => o.title === project);
-        displayProjectItems(s);
+
+        displayProjectItems(category);
     }
 });
+

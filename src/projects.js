@@ -18,14 +18,16 @@ function projectAddTask(project, task) {
     s.tasks.push(task);
 }
 
-function projectPage() {
-    const title = document.querySelector(".main-title");
-    title.textContent = '';
-};
-
 function createProject(name) {
-    const project = new Project(name);
-    myProjects.push(project);
+    if (name.length === 0) {
+        alert("Project name can not be blank.");
+    }
+    else if(myProjects.find(o => o.title === name)) {
+        alert("Project name already in use.");
+    } else {
+        const project = new Project(name);
+        myProjects.push(project);
+    }
 };
 
 const projectSection = document.querySelector('.sidebar-projects > ul');
@@ -43,7 +45,8 @@ function displayProjects(){
     });
 }
 
-function displayProjectItems(project){
+function displayProjectItems(category){
+    const project = myProjects.find(o => o.title === category);
     displayInbox(project.tasks);
 };
 
@@ -53,4 +56,4 @@ function removeTaskFromProject(category, task) {
     myProjects[p].tasks.splice(s, 1); 
 };
 
-export {Project, myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject}
+export {myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject}

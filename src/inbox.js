@@ -1,5 +1,3 @@
-import { myTasks } from "./addTask.js"
-
 function inboxPage() {
     const title = document.querySelector(".main-title");
     title.textContent = "Inbox";
