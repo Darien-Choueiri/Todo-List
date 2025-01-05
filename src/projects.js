@@ -1,6 +1,6 @@
 import { displayInbox } from "./inbox.js"
 
-let myProjects= [];
+let myProjects= JSON.parse(localStorage.getItem("myProjects") || "[]");
 
 class Project {
     constructor(title){
@@ -9,9 +9,11 @@ class Project {
     }
 };
 
-const first = new Project("default");
-myProjects.push(first);
-console.log(myProjects);
+if (myProjects.length === 0){
+    const first = new Project("default");
+    myProjects.push(first);
+    console.log(myProjects);
+}
 
 function projectAddTask(project, task) {
     let s = myProjects.find(o => o.title === project);
@@ -38,9 +40,18 @@ function displayProjects(){
         console.log(project.title);
         const projectDisplay = document.createElement('li');
         const projectBtn = document.createElement('button');
+        const deleteProject = document.createElement('button');
+
+        deleteProject.classList.add('projectDelete');
         projectBtn.innerHTML = project.title;
+        deleteProject.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" 
+         height="18px" viewBox="0 -960 960 960" width="18px" fill="current 
+         color"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 
+         56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>`;
         projectBtn.classList.add('projectSelect');
+
         projectDisplay.append(projectBtn);
+        projectDisplay.append(deleteProject);
         projectSection.append(projectDisplay);  
     });
 }
@@ -56,4 +67,9 @@ function removeTaskFromProject(category, task) {
     myProjects[p].tasks.splice(s, 1); 
 };
 
-export {myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject}
+function removeProject(category){
+    const p = myProjects.findIndex(o => o.title === category);
+    myProjects.splice(p, 1);
+}
+
+export {myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject, removeProject}

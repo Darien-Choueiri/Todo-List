@@ -1,7 +1,7 @@
 import { removeTaskFromProject } from "./projects.js" 
 
 //add task
-let myTasks = [];
+let myTasks = JSON.parse(localStorage.getItem("mytasks") || "[]");
 
 class Task {
     constructor(title, description, dueDate, priority){
@@ -20,7 +20,6 @@ function addTask(task) {
 
 function removeTask(task){
     let pos = myTasks.findIndex(t => t.key === task);
-    
     myTasks.splice(pos, 1);
 }
 

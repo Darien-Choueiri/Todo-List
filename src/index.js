@@ -4,7 +4,7 @@ import { todayPage } from "./today.js"
 import { weekPage} from "./week.js"
 import { Task, addTask, myTasks, removeTask, editTask } from "./addTask.js" 
 import { format, isBefore, isAfter, nextSunday } from "date-fns"
-import { myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject} from "./projects.js"
+import { myProjects, projectAddTask, createProject, displayProjects, displayProjectItems, removeTaskFromProject, removeProject} from "./projects.js"
 
 
 let category = 'default';
@@ -14,6 +14,18 @@ inboxPage();
 //optimization to do: combine the getting of values from a form into a function to avoid replication
 
 displayProjects();
+
+//local storage
+(function() { 
+    // Saving
+    saving();
+    console.log(myProjects);
+})();
+
+function saving(){
+    localStorage.setItem("myProjects", JSON.stringify(myProjects));
+    localStorage.setItem("myTasks", JSON.stringify(myTasks));
+}
 
 //switch between the pages
 let page = 1;
@@ -79,8 +91,9 @@ submit.addEventListener('submit', (event) => {
         alert("Task is not unique.");
     } else {
         const task = new Task(title, description, dueDate, priority, key);
-        addTask(task);
+        addTask(task);   
         projectAddTask(category, task);
+        saving();
     }
     event.preventDefault();
     dialog.close();  
@@ -125,6 +138,7 @@ document.addEventListener("click", (e) => {
         displayProjectItems(category);
 
         removeTask(target.id);
+        saving();
         target.parentNode.remove();
         console.log(myTasks);
     }
@@ -166,6 +180,7 @@ submitEdit.addEventListener('submit', (event) => {
 
     
     editTask(task, dialogEdit.value);
+    saving();
 
     console.log(myTasks);
     event.preventDefault();
@@ -199,6 +214,8 @@ submitProject.addEventListener("click", (event) => {
     console.log('project name obtained');
     console.log(projectName);
     createProject(projectName);
+
+    saving();
     event.preventDefault();
     dialogProject.close(); 
     displayProjects();
@@ -221,3 +238,18 @@ document.addEventListener("click", (e) => {
     }
 });
 
+//delete projects 
+document.addEventListener("click", (e) => {
+    const target = e.target.closest(".projectDelete");
+    
+    if(target){
+        console.log(`button wrok ${target.innerHTML}`);
+        
+        const project = target.previousSibling.innerHTML;
+        category = project;
+
+        removeProject(category);
+        saving();
+        displayProjects();
+    }
+});

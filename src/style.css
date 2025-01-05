@@ -351,5 +351,20 @@ input[type="checkbox"]:checked::before {
 
 .sidebar-projects > ul {
     margin-left: 15px;
+    
 }
 
+.sidebar-projects > ul > li {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+
+.projectSelect {
+    padding: 3px;
+}
+
+.projectDelete {
+  display: flex;
+  padding: 3px;
+}
