@@ -19,7 +19,6 @@ displayProjects();
 (function() { 
     // Saving
     saving();
-    console.log(myProjects);
 })();
 
 function saving(){
@@ -180,12 +179,14 @@ submitEdit.addEventListener('submit', (event) => {
 
     
     editTask(task, dialogEdit.value);
-    saving();
+    //saving();
 
     console.log(myTasks);
+    displayTask(page); 
+    
     event.preventDefault();
     dialogEdit.close();  
-    displayTask(page);  
+     
 });
 
 //check task viusal identifier only
@@ -251,5 +252,12 @@ document.addEventListener("click", (e) => {
         removeProject(category);
         saving();
         displayProjects();
+        //send display page to inbox if there are no projects
+        if (myProjects.length === 0){
+            inboxPage();
+            page  = 1;
+            category = 'default';
+            displayTask(page);
+        }
     }
 });
